@@ -17,3 +17,6 @@ taxonomies = [
     {name = "tags", rss = true},
     {name = "categories", rss = true},
 ]
+
+[extra]
+# anpu_menu_links = [{name = "", url = ""}]
