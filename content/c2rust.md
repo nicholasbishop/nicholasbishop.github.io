@@ -19,28 +19,24 @@ Here's what worked for me on Fedora:
 
 1. Create a `Containerfile`:
 
-    ```docker
-    FROM docker://immunant/c2rust:archlinux-base-latest
+   ```docker
+   FROM docker://immunant/c2rust:archlinux-base-latest
 
-    RUN git clone https://github.com/immunant/c2rust.git
-    WORKDIR c2rust
-    RUN cargo +nightly-2019-12-05 build --release --locked
-    ```
+   RUN git clone https://github.com/immunant/c2rust.git
+   WORKDIR c2rust
+   RUN cargo +nightly-2019-12-05 build --release --locked
+   
+   ENTRYPOINT ["/c2rust/target/release/c2rust"]
+   ```
 
 2. Build it (this will take a while):
 
    ```
    podman build -f Containerfile -t c2rust
    ```
-
-3. Copy the binary out to the host:
-
-   ```
-   podman run -v$PWD:/host:z c2rust cp /c2rust/target/release/c2rust /host
-   ```
-
-4. That's it, now you can run it:
+   
+3. Run it in the container:
 
    ```
-   ./c2rust [...]
+   podman run -v$PWD:/host:z c2rust transpile /host/compile_commands.json
    ```
