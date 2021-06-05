@@ -40,3 +40,6 @@ Here's what worked for me on Fedora:
    ```
    podman run -v$PWD:/host:z c2rust transpile /host/compile_commands.json
    ```
+
+That last step assumes that you have a `compile_commands.json` in the
+current directory and that the paths it references are under `/host`.
