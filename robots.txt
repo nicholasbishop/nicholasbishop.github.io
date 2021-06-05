@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nicholasbishop.github.io/sitemap.xml
