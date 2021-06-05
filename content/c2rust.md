@@ -3,8 +3,9 @@ title = "Building c2rust"
 date = 2021-06-05
 +++
 
-I had some difficulty building c2rust, here are some notes on how I
-got it to work.
+[c2rust](https://github.com/immunant/c2rust) is a really neat and
+useful tool :) Unfortunately I had some difficulty building c2rust,
+here are some notes on how I got it to work.
 
 The c2rust build depends on the host environment, so basically you
 don't want to build it there or it will break. Building it in a
@@ -38,8 +39,9 @@ Here's what worked for me on Fedora:
 3. Run it in the container:
 
    ```
-   podman run -v$PWD:/host:z c2rust transpile /host/compile_commands.json
+   podman run -v$PWD:/host:z c2rust transpile --output-dir /host/transpile/ /host/compile_commands.json
    ```
 
 That last step assumes that you have a `compile_commands.json` in the
-current directory and that the paths it references are under `/host`.
+current directory and that the paths it references are under
+`/host`. The output will go to `/host/transpile`.
